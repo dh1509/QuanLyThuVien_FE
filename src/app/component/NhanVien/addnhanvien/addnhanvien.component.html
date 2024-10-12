@@ -1,0 +1,75 @@
+<div class="full_container">
+  <div class="inner_container">
+    <!-- Sidebar  -->
+    <app-navbar></app-navbar>
+    <!-- end sidebar -->
+    <!-- right content -->
+    <div id="content">
+      <app-header></app-header>
+      <h4 style="margin-top: 50px;">Thêm thể loại mới</h4>
+      <div class="row" >
+        <!-- table section -->
+        <div class="col-lg-6">
+          <form [formGroup]="nhanvienForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="MaNV" class="form-label">Mã Nhân Viên</label>
+              <input type="text" class="form-control" id="MaNV" formControlName="maNV">
+            </div>
+            <div class="mb-3">
+              <label for="tenNV" class="form-label">Tên Nhân Viên</label>
+              <input type="text" class="form-control" id="tenNV" formControlName="tenNV">
+            </div>
+
+            <div class="mb-3">
+              <label for="gioiTinh" class="form-label">Giới Tính</label>
+              <select class="form-select" id="gioiTinh" formControlName="gioiTinh">
+                <option  [value]="'Nam'">Nam</option>
+                <option  [value]="'Nữ'">Nữ</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="soDienThoai" class="form-label">Số Điện Thoai </label>
+              <input type="text" class="form-control" id="soDienThoai" formControlName="soDienThoai">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email </label>
+              <input type="text" class="form-control" id="email" formControlName="email">
+            </div>
+            <div class="mb-3">
+              <label for="namSinh" class="form-label">Năm Sinh</label>
+              <input type="text" class="form-control" id="namSinh" formControlName="namSinh">
+            </div>
+            <div class="mb-3">
+              <label for="trangThaiHoatDong" class="form-label">Trạng Thái Hoạt Động</label>
+              <select class="form-select" id="trangThaiHoatDong" formControlName="trangThaiHoatDong">
+                <option  [value]="1">1</option>
+                <option  [value]="0">0</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="maPhongBan" class="form-label">Phòng Ban</label>
+              <select class="form-select" id="maPhongBan" formControlName="maPhongBan">
+                <option *ngFor="let phongban of phongbans" [value]="phongban.maPhongBan">{{phongban.tenPhongBan}}</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="maVaiTro" class="form-label">Vai Trò</label>
+              <select class="form-select" id="maVaiTro" formControlName="maVaiTro">
+                <option *ngFor="let vaitro of vaitros" [value]="vaitro.maVaiTro">{{vaitro.tenVaiTro}}</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Thêm</button>
+            <button style="margin-left: 10px;" type="button" routerLink="/listNhanVien" class="btn btn-primary">Quay Lại</button>
+          </form>
+
+        </div>
+
+      </div>
+      <!--      <app-footer></app-footer>-->
+    </div>
+    <!-- footer -->
+
+  </div>
+  <!-- end dashboard inner -->
+</div>

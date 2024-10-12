@@ -1,0 +1,116 @@
+<div class="full_container">
+  <div class="inner_container">
+    <!-- Sidebar  -->
+    <app-navbar></app-navbar>
+    <!-- end sidebar -->
+    <!-- right content -->
+    <div id="content">
+      <app-header></app-header>
+      <h4 style="margin-top: 50px;">Thêm Phiếu Mượn</h4>
+      <div class="row">
+        <!-- table section -->
+        <div class="col-lg-6">
+          <form [formGroup]="muonTraForm" (ngSubmit)="addPhieuMuonVaChiTiet()">
+            <div formGroupName="muonTraDTO">
+              <div class="form-group row">
+                <label for="maNV" class="col-sm-2 col-form-label">Mã NV:</label>
+                <div class="col-sm-4">
+                  <select class="form-select" id="maNV" formControlName="maNV" (change)="onMaNVChange($event)">
+                    <option *ngFor="let nv of nhanviens" [value]="nv.maNV">{{ nv.maNV }}</option>
+                  </select>
+                </div>
+                <label for="tenNV" class="col-sm-2 col-form-label">Tên NV:</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" id="tenNV" [value]="tenNV" readonly>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="maDocGia" class="col-sm-2 col-form-label">Mã Độc Giả:</label>
+                <div class="col-sm-4">
+                  <select class="form-select" id="maDocGia" formControlName="maDocGia"
+                          (change)="onMaDocGiaChange($event)">
+                    <option *ngFor="let docgia of docgias" [value]="docgia.maDocGia">{{ docgia.maDocGia }}</option>
+                  </select>
+                </div>
+                <label for="tenDocGia" class="col-sm-2 col-form-label">Tên Độc Giả:</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" id="tenDocGia" [value]="tenDocGia" readonly>
+                </div>
+              </div>
+            </div>
+<!--            <table class="table mt-3">-->
+<!--              <thead>-->
+<!--              <tr>-->
+<!--                <th>Tên Thể Loại</th>-->
+<!--                <th>Tên Sách</th>-->
+<!--                <th>Chi tiết Sách</th>-->
+<!--                <th></th> &lt;!&ndash; Thêm một cột cho nút xóa &ndash;&gt;-->
+<!--              </tr>-->
+<!--              </thead>-->
+<!--              <tbody>-->
+<!--              <tr *ngFor="let chiTiet of danhSachChiTiet">-->
+<!--                <td>{{ chiTiet.tenTheLoai }}</td>-->
+<!--                <td>{{ chiTiet.tenSach }}</td>-->
+<!--                <td>{{ chiTiet.maChiTietSach }}</td>-->
+<!--                <td>-->
+<!--                  <button type="submit" class="btn btn-danger" >Xóa</button>-->
+<!--                </td>-->
+<!--              </tr>-->
+<!--              </tbody>-->
+<!--            </table>-->
+<!--            <br>-->
+<!--            <br>-->
+            <div formArrayName="chiTietMuonTraDTOList">
+              <div *ngFor="let chiTiet of chiTietMuonTraControls; let i=index" [formGroupName]="i"
+                   class="form-group row">
+                <input type="hidden" formControlName="timestamp">
+                <div class="row align-items-end">
+                  <div class="col-sm-3">
+                    <label for="maTheLoai{{i}}" class="col-form-label">Tên Thể Loại:</label>
+                    <select class="form-select" id="maTheLoai{{i}}" formControlName="maTheLoai"
+                            (change)="onTheLoaiChange($event)">
+                      <option *ngFor="let theloai of theloais" [value]="theloai.maTheLoai">{{ theloai.tenTheLoai }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col-sm-5">
+                    <label for="maSach{{i}}" class="col-form-label">Tên Sách:</label>
+                    <select class="form-select" id="maSach{{i}}" formControlName="maSach"
+                            (change)="onSachChange($event)">
+                      <option *ngFor="let sach of sachTL" [value]="sach.maSach">{{ sach.tenSach }}</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-2">
+                    <label for="maChiTietSach{{i}}" class="col-form-label">Chi tiết Sách:</label>
+                    <select class="form-select" id="maChiTietSach{{i}}" formControlName="maChiTietSach">
+                      <option *ngFor="let sach of ctSach" [value]="sach.maChiTietSach">{{ sach.maChiTietSach }}</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-2">
+                    <button type="button" class="btn btn-danger" (click)="removeChiTietMuonTra(i)">Xóa</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <button type="button" class="btn btn-primary" (click)="addChiTietMuonTra()">Thêm Chi Tiết</button>
+            <button type="submit" class="btn btn-primary" style="margin-left: 20px;">Nhập</button>
+            <button style="margin-left: 20px;" class="btn btn-primary" routerLink="/listMuonTra">Quay Lại</button>
+
+
+          </form>
+
+
+
+        </div>
+
+
+      </div>
+      <!--      <app-footer></app-footer>-->
+    </div>
+    <!-- footer -->
+
+  </div>
+  <!-- end dashboard inner -->
+</div>
+

@@ -1,0 +1,80 @@
+<div class="full_container">
+  <div class="inner_container">
+    <!-- Sidebar  -->
+    <app-navbar></app-navbar>
+    <!-- end sidebar -->
+    <!-- right content -->
+    <div id="content">
+      <app-header></app-header>
+      <div class="row">
+        <!-- table section -->
+        <div class="col-lg-12">
+          <div class="white_shd full margin_bottom_30">
+            <div class="full graph_head">
+              <div class="heading1 margin_0">
+                <h2>Danh Sách Sách</h2>
+              </div>
+            </div>
+            <div class="table_section padding_infor_info">
+              <div class="table-responsive-sm">
+                <button style="margin-bottom: 20px;" class="btn btn-outline-primary" routerLink="/addsach">Thêm mới</button>
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>Mã Sách</th>
+                    <th>Tên Sách</th>
+                    <th>Ảnh Bìa</th>
+                    <th>Tình Trạng</th>
+                    <th>Giá Bìa</th>
+                    <th>Năm Xuất Bản</th>
+                    <th>Nhà Xuất Bản</th>
+                    <th>Ngôn Ngữ</th>
+                    <th>Tác Giả</th>
+                    <th>Thể Loại</th>
+                    <th>Chi Tiết</th>
+                    <th>Sửa</th>
+                    <th>Xóa</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let sach of sachs">
+                    <td>{{sach.maSach}}</td>
+                    <td>{{sach.tenSach}}</td>
+                    <td>
+                      <img style="width: 70px; height: 70px" src="{{sach.anhBia}}">
+                    </td>
+
+                    <td>{{sach.tinhTrang}}</td>
+                    <td>{{sach.giaBia}}</td>
+                    <td>{{sach.namXuatBan}}</td>
+                    <td>{{sach.nhaXuatBan?.tenNxb}}</td>
+                    <td>{{sach?.ngonNgu?.tenNgonNgu}}</td>
+                    <td>{{sach?.tacGia?.tenTacGia}}</td>
+                    <td>{{sach?.theLoai?.tenTheLoai}}</td>
+                    <td>
+                      <button class="btn btn-outline-primary" [routerLink]="'/listCTSach/' + sach.maSach">Chi Tiết</button>
+                    </td>
+
+                    <td>
+                      <button class="btn btn-outline-primary" [routerLink]="'/updateSach/' + sach.maSach">Sửa</button>
+                    </td>
+                    <td>
+                      <button class="btn btn-outline-danger" >Xóa</button>
+                    </td>
+                  </tr>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!--      <app-footer></app-footer>-->
+    </div>
+    <!-- footer -->
+
+  </div>
+  <!-- end dashboard inner -->
+</div>

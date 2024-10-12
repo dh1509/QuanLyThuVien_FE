@@ -1,0 +1,63 @@
+<div class="full_container">
+  <div class="inner_container">
+    <!-- Sidebar  -->
+    <app-navbar></app-navbar>
+    <!-- end sidebar -->
+    <!-- right content -->
+    <div id="content">
+      <app-header></app-header>
+      <div class="row">
+        <!-- table section -->
+        <div class="col-lg-12">
+          <div class="white_shd full margin_bottom_30">
+            <div class="full graph_head">
+              <div class="heading1 margin_0">
+                <h2>Danh Sách Hóa Đơn Nhập</h2>
+              </div>
+            </div>
+            <div class="table_section padding_infor_info">
+              <div class="table-responsive-sm">
+                <button style="margin-bottom: 20px;" class="btn btn-outline-primary" routerLink="/addhoadonnhap">Thêm Hóa Đơn Nhập</button>
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>Mã Hóa Đơn</th>
+                    <th>Ngày Nhập</th>
+                    <th>Nhân Viên Nhập</th>
+                    <th>Nhà Cung Cấp</th>
+                    <th>Trạng Thái</th>
+                    <th>Tổng Tiền</th>
+                    <th>Chi Tiết Hóa Đơn</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let hdn of hdns">
+                    <td>{{hdn.maHDN}}</td>
+                    <td>{{hdn.ngayNhap}}</td>
+                    <td>{{hdn.nhanVien?.tenNV}}</td>
+                    <td>{{hdn.nhaCungCap?.tenNcc}}</td>
+                    <td>{{hdn.trangThai}}</td>
+                    <td>{{hdn.tongTien}}</td>
+                    <td>
+                      <button class="btn btn-outline-primary" [routerLink]="'/listCTHDN/' + hdn.maHDN">Chi Tiết</button>
+                    </td>
+                    <td>
+                      <button class="btn btn-outline-danger" >Xóa</button>
+                    </td>
+                  </tr>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!--      <app-footer></app-footer>-->
+    </div>
+    <!-- footer -->
+
+  </div>
+  <!-- end dashboard inner -->
+</div>

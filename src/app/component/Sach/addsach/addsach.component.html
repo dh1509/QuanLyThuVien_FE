@@ -1,0 +1,78 @@
+<div class="full_container">
+  <div class="inner_container">
+    <!-- Sidebar  -->
+    <app-navbar></app-navbar>
+    <!-- end sidebar -->
+    <!-- right content -->
+    <div id="content">
+      <app-header></app-header>
+      <h4 style="margin-top: 50px;">Thêm thể loại mới</h4>
+      <div class="row" >
+        <!-- table section -->
+        <div class="col-lg-6">
+          <form [formGroup]="sachForm" (ngSubmit)="addSach()">
+            <div class="mb-3">
+              <label for="tenSach" class="form-label">Tên Sách</label>
+              <input type="text" class="form-control" id="tenSach" formControlName="tenSach">
+            </div>
+            <div class="mb-3">
+              <label for="anhBia" class="form-label">Ảnh Bìa</label><br>
+<!--              <input type="text" class="form-control" id="anhBia" formControlName="anhBia">-->
+              <input type="file" id="anhBia" (change)="onFileChange($event)" accept="image/*"><br>
+              <img *ngIf="anhBiaUrl" [src]="anhBiaUrl" alt="Ảnh Bìa" style="max-width: 200px; max-height: 200px;">
+              <img src="">
+            </div>
+            <div class="mb-3">
+              <label for="tinhTrang" class="form-label">Tình Trạng</label>
+              <input type="text" class="form-control" id="tinhTrang" formControlName="tinhTrang">
+            </div>
+            <div class="mb-3">
+              <label for="giaBia" class="form-label">Giá Bìa</label>
+              <input type="text" class="form-control" id="giaBia" formControlName="giaBia">
+            </div>
+            <div class="mb-3">
+              <label for="namXuatBan" class="form-label">Năm Xuất Bản</label>
+              <input type="text" class="form-control" id="namXuatBan" formControlName="namXuatBan">
+            </div>
+            <div class="mb-3">
+              <label for="tenNxb" class="form-label">Nhà Xuất Bản</label>
+              <select class="form-select" id="tenNxb" formControlName="maNxb">
+                <option disabled selected>------------------Chọn Nhà Xuất Bản------------------</option>
+                <option *ngFor="let nxb of nxbs" [value]="nxb.maNxb">{{nxb.tenNxb}}</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="tenNgonNgu" class="form-label">Ngôn Ngữ</label>
+              <select class="form-select" id="tenNgonNgu" formControlName="maNgonNgu">
+                <option disabled selected>------------------Chọn Ngôn Ngữ------------------</option>
+                <option *ngFor="let ngonngu of ngonngus" [value]="ngonngu.maNgonNgu">{{ngonngu.tenNgonNgu}}</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="tenTacGia" class="form-label">Tác Giả</label>
+              <select class="form-select" id="tenTacGia" formControlName="maTacGia">
+                <option disabled selected>------------------Chọn Tác Giả------------------</option>
+                <option *ngFor="let tacgia of tacgias" [value]="tacgia.maTacGia">{{tacgia.tenTacGia}}</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="tenTheLoai" class="form-label">Thể Loại</label>
+              <select class="form-select" id="tenTheLoai" formControlName="maTheLoai">
+                <option disabled selected>------------------Chọn Thể Loại------------------</option>
+                <option *ngFor="let theloai of theloais" [value]="theloai.maTheLoai">{{theloai.tenTheLoai}}</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary" >Thêm</button>
+            <button style="margin-left: 10px;" type="button" routerLink="/listsach" class="btn btn-primary">Quay Lại</button>
+          </form>
+
+        </div>
+
+      </div>
+      <!--      <app-footer></app-footer>-->
+    </div>
+    <!-- footer -->
+
+  </div>
+  <!-- end dashboard inner -->
+</div>

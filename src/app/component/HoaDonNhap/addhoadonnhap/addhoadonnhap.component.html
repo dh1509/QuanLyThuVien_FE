@@ -1,0 +1,76 @@
+<div class="full_container">
+  <div class="inner_container">
+    <!-- Sidebar  -->
+    <app-navbar></app-navbar>
+    <!-- end sidebar -->
+    <!-- right content -->
+    <div id="content">
+      <app-header></app-header>
+      <h4 style="margin-top: 50px;">Thêm Hóa Đơn Nhập</h4>
+      <div class="row">
+        <!-- table section -->
+        <div class="col-lg-6">
+          <form [formGroup]="hoaDonNhapForm" (ngSubmit)="addHoaDonNhapAndChiTietHDN()">
+            <div formGroupName="hoaDonNhapDTO">
+              <div class="form-group row">
+                <label for="maNV" class="col-sm-2 col-form-label">Mã NV:</label>
+                <div class="col-sm-4">
+                  <select class="form-select" id="maNV" formControlName="maNV" (change)="onMaNVChange($event)">
+                    <option *ngFor="let nv of nhanviens" [value]="nv.maNV">{{ nv.maNV }}</option>
+                  </select>
+                </div>
+                <label for="tenNV" class="col-sm-2 col-form-label">Tên NV:</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" id="tenNV" [value]="tenNV" readonly>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="maNcc" class="col-sm-2 col-form-label">Mã NCC:</label>
+                <div class="col-sm-4">
+                  <select class="form-select" id="maNcc" formControlName="maNcc">
+                    <option *ngFor="let ncc of nccs" [value]="ncc.maNcc">{{ncc.tenNcc}}</option>
+                  </select>
+<!--                  <input type="text" class="form-control" id="maNcc" formControlName="maNcc">-->
+                </div>
+                <label for="tongTien" class="col-sm-2 col-form-label">Tổng Tiền:</label>
+                <div class="col-sm-4">
+                  <input type="number" class="form-control" id="tongTien" formControlName="tongTien">
+                </div>
+              </div>
+            </div>
+            <div formArrayName="chiTietHDNDTOList">
+              <div *ngFor="let chiTiet of chiTietHDNControls; let i=index" [formGroupName]="i" class="form-group row">
+                <label for="maSach{{i}}" class="col-sm-2 col-form-label">Tên Sách:</label>
+                <div class="col-sm-3">
+                  <select class="form-select" id="maSach{{i}}" formControlName="maSach">
+                    <option *ngFor="let sach of sachs" [value]="sach.maSach">{{sach.tenSach}}</option>
+                  </select>
+<!--                  <input type="text" class="form-control" id="maSach{{i}}" formControlName="maSach">-->
+                </div>
+                <label for="soLuong{{i}}" class="col-sm-2 col-form-label">Số Lượng:</label>
+                <div class="col-sm-3">
+                  <input type="number" class="form-control" id="soLuong{{i}}" formControlName="soLuong">
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-danger" (click)="removeChiTietHDN(i)">Xóa</button>
+                </div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary" (click)="addChiTietHDN()">Thêm Chi Tiết</button>
+            <button type="submit" class="btn btn-primary" style="margin-left: 20px;">Nhập</button>
+            <button style="margin-left: 20px;" class="btn btn-primary" routerLink="/listHDN">Quay Lại</button>
+          </form>
+
+
+
+        </div>
+
+      </div>
+      <!--      <app-footer></app-footer>-->
+    </div>
+    <!-- footer -->
+
+  </div>
+  <!-- end dashboard inner -->
+</div>
+
